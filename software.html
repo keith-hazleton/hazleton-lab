@@ -43,7 +43,7 @@
         <div class="software-item" style="margin-top: 40px;">
             <h3 class="software-title">Literature Monitor</h3>
             <div class="software-meta">
-                <a href="https://github.com/keithhazleton/lit-monitor" target="_blank" class="publication-link">View on GitHub</a>
+                <span style="color: #7f8c8d;">Co-authored with <a href="https://claude.ai" target="_blank" style="color: #7f8c8d;">Claude</a> (Anthropic)</span>
             </div>
             <div class="software-description">
                 <p>
@@ -65,18 +65,41 @@
                         Papers organized by priority (high/moderate/low) delivered to your inbox with summaries and rationale for each ranking
                     </li>
                     <li>
-                        <strong>One-Click Zotero Integration</strong><br>
+                        <strong>One-Click <a href="https://www.zotero.org" target="_blank">Zotero</a> Integration</strong><br>
                         Add papers directly to your Zotero library from the email digest with a single click, using secure signed URLs
                     </li>
                     <li>
-                        <strong>Capacities Integration</strong><br>
+                        <strong><a href="https://capacities.io" target="_blank">Capacities</a> Integration</strong><br>
                         Optionally sync digests and papers to Capacities for personal knowledge management
                     </li>
                 </ul>
 
+                <h4 style="margin-top: 20px; color: #34495e;">Available Versions</h4>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <tr style="background-color: #e8f4f8;">
+                        <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Version</th>
+                        <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Hosting</th>
+                        <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Best For</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">
+                            <a href="https://github.com/keith-hazleton/lit-monitor" target="_blank" class="publication-link">Literature Monitor</a>
+                        </td>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">GitHub Actions</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">Serverless, no hardware required</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">
+                            <a href="https://github.com/keith-hazleton/lit-monitor-pi" target="_blank" class="publication-link">Literature Monitor (Pi Edition)</a>
+                        </td>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">Raspberry Pi / Self-hosted</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">Local control, permanent database</td>
+                    </tr>
+                </table>
+
                 <h4 style="margin-top: 20px; color: #34495e;">Technical Details</h4>
                 <p>
-                    Built with Python, using SQLite for paper storage and tracking. Runs via GitHub Actions (no server required) or can be self-hosted. The Zotero integration uses a Cloudflare Worker to handle secure paper addition.
+                    Built with Python, using SQLite for paper storage and tracking. The <a href="https://www.zotero.org" target="_blank">Zotero</a> integration uses a Cloudflare Worker to handle secure paper addition.
                 </p>
                 <p>
                     Configurable via YAML for search queries, watched authors, journal weights, and research project definitions. The AI ranking considers your specific research interests to surface the most relevant papers.
