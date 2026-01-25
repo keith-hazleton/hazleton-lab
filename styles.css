@@ -215,6 +215,50 @@ em {
     line-height: 1.7;
 }
 
+.software-summary {
+    margin-bottom: 15px;
+}
+
+/* Collapsible details */
+.software-details {
+    margin-top: 15px;
+}
+
+.software-details summary {
+    cursor: pointer;
+    color: #3498db;
+    font-weight: 500;
+    padding: 8px 0;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.software-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.software-details summary::before {
+    content: "▶";
+    font-size: 0.7em;
+    transition: transform 0.2s;
+}
+
+.software-details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.software-details summary:hover {
+    color: #2980b9;
+}
+
+.software-details-content {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
 /* Footer */
 footer {
     background-color: #2c3e50;

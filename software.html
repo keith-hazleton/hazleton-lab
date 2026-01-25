@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Software - Hazleton Lab | Research Tools</title>
-    <meta name="description" content="Open-source research software tools developed by the Hazleton Lab, including automated literature monitoring and paper management systems.">
+    <meta name="description" content="Open-source research software tools developed by the Hazleton Lab, including automated literature monitoring, lab data management, and paper management systems.">
     <meta name="author" content="Keith Hazleton">
     <link rel="canonical" href="https://hazletonlab.com/software.html">
 
@@ -40,70 +40,126 @@
             Open-source tools developed to support research workflows. These projects are available on GitHub and can be adapted for use in other research settings.
         </p>
 
+        <!-- Lab Data Manager -->
         <div class="software-item" style="margin-top: 40px;">
+            <h3 class="software-title">Lab Data Manager</h3>
+            <div class="software-meta">
+                <span style="color: #7f8c8d;">Co-authored with <a href="https://claude.ai" target="_blank" style="color: #7f8c8d;">Claude</a> (Anthropic)</span>
+            </div>
+            <div class="software-description">
+                <p class="software-summary">
+                    A web application for managing mouse experiment data, including subject tracking, daily observations, sample collection, freezer storage organization, and data visualization with Kaplan-Meier survival curves.
+                </p>
+
+                <details class="software-details">
+                    <summary>Read more</summary>
+                    <div class="software-details-content">
+                        <h4 style="margin-top: 0; color: #34495e;">Key Features</h4>
+                        <ul class="research-list">
+                            <li>
+                                <strong>Experiment Management</strong><br>
+                                Create experiments with treatment groups, track individual subjects with ear tags, and record outcomes (deaths, sacrifices, exclusions)
+                            </li>
+                            <li>
+                                <strong>Daily Observations</strong><br>
+                                Tablet-friendly interface for recording weight and clinical condition scores (CSS) with automatic alerts for weight loss and health thresholds
+                            </li>
+                            <li>
+                                <strong>Sample Tracking</strong><br>
+                                Collect and manage samples (blood, serum, tissue) linked to subjects; browse samples across all experiments with filtering
+                            </li>
+                            <li>
+                                <strong>Freezer Storage</strong><br>
+                                Visual box layouts for organizing samples in freezers, racks, and boxes with drag-and-drop assignment and position tracking
+                            </li>
+                            <li>
+                                <strong>Data Visualization</strong><br>
+                                Interactive plots including Kaplan-Meier survival curves, weight timeseries, and CSS tracking with cross-experiment comparison by treatment group
+                            </li>
+                        </ul>
+
+                        <h4 style="margin-top: 20px; color: #34495e;">Technical Details</h4>
+                        <p>
+                            Built with React, TypeScript, and Node.js. Uses SQLite for local data storage and Recharts for visualization. Designed for self-hosting on a local network or Raspberry Pi.
+                        </p>
+                        <p style="margin-top: 15px;">
+                            <a href="https://github.com/keith-hazleton/lab-data-manager" target="_blank" class="publication-link">View on GitHub →</a>
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- Literature Monitor -->
+        <div class="software-item">
             <h3 class="software-title">Literature Monitor</h3>
             <div class="software-meta">
                 <span style="color: #7f8c8d;">Co-authored with <a href="https://claude.ai" target="_blank" style="color: #7f8c8d;">Claude</a> (Anthropic)</span>
             </div>
             <div class="software-description">
-                <p>
-                    An automated literature tracking system designed to help researchers stay current with new publications. The system searches PubMed and bioRxiv/medRxiv on a weekly schedule, then uses Claude AI to rank papers by relevance to your active research projects.
+                <p class="software-summary">
+                    An automated literature tracking system that searches PubMed and bioRxiv/medRxiv weekly, uses AI to rank papers by relevance to your research projects, and delivers organized email digests with one-click Zotero integration.
                 </p>
 
-                <h4 style="margin-top: 20px; color: #34495e;">Key Features</h4>
-                <ul class="research-list">
-                    <li>
-                        <strong>Automated Search</strong><br>
-                        Configurable queries search PubMed and preprint servers weekly, with date-range filtering and deduplication
-                    </li>
-                    <li>
-                        <strong>AI-Powered Ranking</strong><br>
-                        Claude analyzes each paper's title and abstract, scoring relevance (0-1) against your defined research projects and generating brief summaries
-                    </li>
-                    <li>
-                        <strong>Weekly Email Digest</strong><br>
-                        Papers organized by priority (high/moderate/low) delivered to your inbox with summaries and rationale for each ranking
-                    </li>
-                    <li>
-                        <strong>One-Click <a href="https://www.zotero.org" target="_blank">Zotero</a> Integration</strong><br>
-                        Add papers directly to your Zotero library from the email digest with a single click, using secure signed URLs
-                    </li>
-                    <li>
-                        <strong><a href="https://capacities.io" target="_blank">Capacities</a> Integration</strong><br>
-                        Optionally sync digests and papers to Capacities for personal knowledge management
-                    </li>
-                </ul>
+                <details class="software-details">
+                    <summary>Read more</summary>
+                    <div class="software-details-content">
+                        <h4 style="margin-top: 0; color: #34495e;">Key Features</h4>
+                        <ul class="research-list">
+                            <li>
+                                <strong>Automated Search</strong><br>
+                                Configurable queries search PubMed and preprint servers weekly, with date-range filtering and deduplication
+                            </li>
+                            <li>
+                                <strong>AI-Powered Ranking</strong><br>
+                                Claude analyzes each paper's title and abstract, scoring relevance (0-1) against your defined research projects and generating brief summaries
+                            </li>
+                            <li>
+                                <strong>Weekly Email Digest</strong><br>
+                                Papers organized by priority (high/moderate/low) delivered to your inbox with summaries and rationale for each ranking
+                            </li>
+                            <li>
+                                <strong>One-Click <a href="https://www.zotero.org" target="_blank">Zotero</a> Integration</strong><br>
+                                Add papers directly to your Zotero library from the email digest with a single click, using secure signed URLs
+                            </li>
+                            <li>
+                                <strong><a href="https://capacities.io" target="_blank">Capacities</a> Integration</strong><br>
+                                Optionally sync digests and papers to Capacities for personal knowledge management
+                            </li>
+                        </ul>
 
-                <h4 style="margin-top: 20px; color: #34495e;">Available Versions</h4>
-                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                    <tr style="background-color: #e8f4f8;">
-                        <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Version</th>
-                        <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Hosting</th>
-                        <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Best For</th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">
-                            <a href="https://github.com/keith-hazleton/lit-monitor" target="_blank" class="publication-link">Literature Monitor</a>
-                        </td>
-                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">GitHub Actions</td>
-                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">Serverless, no hardware required</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">
-                            <a href="https://github.com/keith-hazleton/lit-monitor-pi" target="_blank" class="publication-link">Literature Monitor (Pi Edition)</a>
-                        </td>
-                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">Raspberry Pi / Self-hosted</td>
-                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">Local control, permanent database</td>
-                    </tr>
-                </table>
+                        <h4 style="margin-top: 20px; color: #34495e;">Available Versions</h4>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr style="background-color: #e8f4f8;">
+                                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Version</th>
+                                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Hosting</th>
+                                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Best For</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">
+                                    <a href="https://github.com/keith-hazleton/lit-monitor" target="_blank" class="publication-link">Literature Monitor</a>
+                                </td>
+                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">GitHub Actions</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">Serverless, no hardware required</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">
+                                    <a href="https://github.com/keith-hazleton/lit-monitor-pi" target="_blank" class="publication-link">Literature Monitor (Pi Edition)</a>
+                                </td>
+                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">Raspberry Pi / Self-hosted</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">Local control, permanent database</td>
+                            </tr>
+                        </table>
 
-                <h4 style="margin-top: 20px; color: #34495e;">Technical Details</h4>
-                <p>
-                    Built with Python, using SQLite for paper storage and tracking. The <a href="https://www.zotero.org" target="_blank">Zotero</a> integration uses a Cloudflare Worker to handle secure paper addition.
-                </p>
-                <p>
-                    Configurable via YAML for search queries, watched authors, journal weights, and research project definitions. The AI ranking considers your specific research interests to surface the most relevant papers.
-                </p>
+                        <h4 style="margin-top: 20px; color: #34495e;">Technical Details</h4>
+                        <p>
+                            Built with Python, using SQLite for paper storage and tracking. The <a href="https://www.zotero.org" target="_blank">Zotero</a> integration uses a Cloudflare Worker to handle secure paper addition.
+                        </p>
+                        <p>
+                            Configurable via YAML for search queries, watched authors, journal weights, and research project definitions. The AI ranking considers your specific research interests to surface the most relevant papers.
+                        </p>
+                    </div>
+                </details>
             </div>
         </div>
 
