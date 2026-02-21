@@ -13,6 +13,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512x512.png">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 
     <!-- GoatCounter Analytics -->
@@ -32,7 +37,7 @@
             <a href="index.html">Home</a>
             <a href="publications.html">Publications</a>
             <a href="journal-club.html">Journal Club</a>
-            <a href="software.html">Software</a>
+            <a href="software.html" class="active">Software</a>
             <a href="about.html">About</a>
         </div>
     </nav>
@@ -45,10 +50,10 @@
         </p>
 
         <!-- Lab Data Manager -->
-        <div class="software-item" style="margin-top: 40px;">
+        <div class="software-item section-gap">
             <h3 class="software-title">Lab Data Manager</h3>
             <div class="software-meta">
-                <span style="color: #7f8c8d;">Co-authored with <a href="https://claude.ai" target="_blank" style="color: #7f8c8d;">Claude</a> (Anthropic)</span>
+                <span>Co-authored with <a href="https://claude.ai" target="_blank">Claude</a> (Anthropic)</span>
             </div>
             <div class="software-description">
                 <p class="software-summary">
@@ -58,7 +63,7 @@
                 <details class="software-details">
                     <summary>Read more</summary>
                     <div class="software-details-content">
-                        <h4 style="margin-top: 0; color: #34495e;">Key Features</h4>
+                        <h4>Key Features</h4>
                         <ul class="research-list">
                             <li>
                                 <strong>Experiment Management</strong><br>
@@ -82,11 +87,11 @@
                             </li>
                         </ul>
 
-                        <h4 style="margin-top: 20px; color: #34495e;">Technical Details</h4>
+                        <h4>Technical Details</h4>
                         <p>
                             Built with React, TypeScript, and Node.js. Uses SQLite for local data storage and Recharts for visualization. Designed for self-hosting on a local network or Raspberry Pi.
                         </p>
-                        <p style="margin-top: 15px;">
+                        <p>
                             <a href="https://github.com/keith-hazleton/lab-data-manager" target="_blank" class="publication-link">View on GitHub →</a>
                         </p>
                     </div>
@@ -98,7 +103,7 @@
         <div class="software-item">
             <h3 class="software-title">Literature Monitor</h3>
             <div class="software-meta">
-                <span style="color: #7f8c8d;">Co-authored with <a href="https://claude.ai" target="_blank" style="color: #7f8c8d;">Claude</a> (Anthropic)</span>
+                <span>Co-authored with <a href="https://claude.ai" target="_blank">Claude</a> (Anthropic)</span>
             </div>
             <div class="software-description">
                 <p class="software-summary">
@@ -108,7 +113,7 @@
                 <details class="software-details">
                     <summary>Read more</summary>
                     <div class="software-details-content">
-                        <h4 style="margin-top: 0; color: #34495e;">Key Features</h4>
+                        <h4>Key Features</h4>
                         <ul class="research-list">
                             <li>
                                 <strong>Automated Search</strong><br>
@@ -132,30 +137,30 @@
                             </li>
                         </ul>
 
-                        <h4 style="margin-top: 20px; color: #34495e;">Available Versions</h4>
-                        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                            <tr style="background-color: #e8f4f8;">
-                                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Version</th>
-                                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Hosting</th>
-                                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #3498db;">Best For</th>
-                            </tr>
-                            <tr>
-                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">
-                                    <a href="https://github.com/keith-hazleton/lit-monitor" target="_blank" class="publication-link">Literature Monitor</a>
-                                </td>
-                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">GitHub Actions</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">Serverless, no hardware required</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">
-                                    <a href="https://github.com/keith-hazleton/lit-monitor-pi" target="_blank" class="publication-link">Literature Monitor (Pi Edition)</a>
-                                </td>
-                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">Raspberry Pi / Self-hosted</td>
-                                <td style="padding: 10px; border-bottom: 1px solid #ddd;">Local control, permanent database</td>
-                            </tr>
+                        <h4>Available Versions</h4>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Version</th>
+                                    <th>Hosting</th>
+                                    <th>Best For</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="https://github.com/keith-hazleton/lit-monitor" target="_blank" class="publication-link">Literature Monitor</a></td>
+                                    <td>GitHub Actions</td>
+                                    <td>Serverless, no hardware required</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://github.com/keith-hazleton/lit-monitor-pi" target="_blank" class="publication-link">Literature Monitor (Pi Edition)</a></td>
+                                    <td>Raspberry Pi / Self-hosted</td>
+                                    <td>Local control, permanent database</td>
+                                </tr>
+                            </tbody>
                         </table>
 
-                        <h4 style="margin-top: 20px; color: #34495e;">Technical Details</h4>
+                        <h4>Technical Details</h4>
                         <p>
                             Built with Python, using SQLite for paper storage and tracking. The <a href="https://www.zotero.org" target="_blank">Zotero</a> integration uses a Cloudflare Worker to handle secure paper addition.
                         </p>
@@ -171,7 +176,7 @@
         <div class="software-item">
             <h3 class="software-title">CRediT Author Contributions Tool</h3>
             <div class="software-meta">
-                <span style="color: #7f8c8d;">Co-authored with <a href="https://claude.ai" target="_blank" style="color: #7f8c8d;">Claude</a> (Anthropic)</span>
+                <span>Co-authored with <a href="https://claude.ai" target="_blank">Claude</a> (Anthropic)</span>
             </div>
             <div class="software-description">
                 <p class="software-summary">
@@ -181,7 +186,7 @@
                 <details class="software-details">
                     <summary>Read more</summary>
                     <div class="software-details-content">
-                        <h4 style="margin-top: 0; color: #34495e;">Key Features</h4>
+                        <h4>Key Features</h4>
                         <ul class="research-list">
                             <li>
                                 <strong>Shareable Projects</strong><br>
@@ -201,11 +206,11 @@
                             </li>
                         </ul>
 
-                        <h4 style="margin-top: 20px; color: #34495e;">Technical Details</h4>
+                        <h4>Technical Details</h4>
                         <p>
                             Built with plain HTML, CSS, and JavaScript (no framework or build step). Uses Cloudflare Pages for hosting, Pages Functions for the API, and Cloudflare D1 (SQLite) for data storage. Runs entirely on the Cloudflare free tier.
                         </p>
-                        <p style="margin-top: 15px;">
+                        <p>
                             <a href="https://github.com/keith-hazleton/CRediT_tool" target="_blank" class="publication-link">View on GitHub →</a>
                         </p>
                     </div>
@@ -218,7 +223,7 @@
     <footer>
         <div class="footer-content">
             <p>&copy; 2026 Hazleton Lab | Children's Hospital Los Angeles</p>
-            <p><a href="https://keithhazleton.com" style="color: #ecf0f1;">Keith Hazleton, MD, PhD</a></p>
+            <p><a href="https://keithhazleton.com">Keith Hazleton, MD, PhD</a></p>
         </div>
     </footer>
 </body>
