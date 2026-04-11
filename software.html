@@ -64,8 +64,60 @@
             Open-source tools developed to support research workflows. These projects are available on GitHub and can be adapted for use in other research settings.
         </p>
 
-        <!-- Lab Data Manager -->
+        <!-- SciENcv HTML Formatter -->
         <div class="software-item section-gap">
+            <h3 class="software-title">SciENcv HTML Formatter</h3>
+            <div class="software-meta">
+                <span>Co-authored with <a href="https://claude.ai" target="_blank">Claude</a> (Anthropic)</span>
+            </div>
+            <div class="software-description">
+                <p class="software-summary">
+                    A single-file web tool for formatting Personal Statements and Contributions to Science for the NIH SciENcv Common Form. Write or paste text, apply bold/italic/underline, then copy clean HTML ready to paste directly into SciENcv — with a live character counter that includes HTML tags toward the limit.
+                </p>
+
+                <details class="software-details">
+                    <summary>Read more</summary>
+                    <div class="software-details-content">
+                        <h4>Key Features</h4>
+                        <ul class="research-list">
+                            <li>
+                                <strong>WYSIWYG Editor</strong><br>
+                                Contenteditable editor with toolbar buttons and keyboard shortcuts (Ctrl/Cmd + B/I/U) for bold, italic, and underline
+                            </li>
+                            <li>
+                                <strong>Clean HTML Output</strong><br>
+                                Emits only the tags SciENcv supports (<code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;u&gt;</code>, <code>&lt;br&gt;</code>) — strips editor-generated styling
+                            </li>
+                            <li>
+                                <strong>Smart Character Counting</strong><br>
+                                Counts the final HTML length (tags included) against SciENcv's limits: 3,500 for Personal Statement, 2,000 for Contribution to Science, with warning and over-limit alerts
+                            </li>
+                            <li>
+                                <strong>Paragraph vs Line Break Control</strong><br>
+                                Enter inserts a paragraph break (blank line); Shift+Enter inserts a single line break — matching typical biosketch formatting conventions
+                            </li>
+                            <li>
+                                <strong>Fully Offline</strong><br>
+                                Single HTML file, no build step, no dependencies, no data leaves your browser
+                            </li>
+                        </ul>
+
+                        <h4>Technical Details</h4>
+                        <p>
+                            Plain HTML, CSS, and vanilla JavaScript in a single file. Uses <code>contenteditable</code> with a custom serializer that walks the DOM and emits only SciENcv-safe tags, stripping any inline styles or editor artifacts that would otherwise inflate the character count or fail to render in SciENcv PDF exports.
+                        </p>
+                        <p>
+                            <a href="sciencv_formatter.html" target="_blank" class="publication-link">Open the tool →</a>
+                            &nbsp;&nbsp;
+                            <a href="https://github.com/keith-hazleton/hazleton-lab/blob/main/sciencv_formatter.html" target="_blank" class="publication-link">View source on GitHub →</a>
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- Lab Data Manager -->
+        <div class="software-item">
             <h3 class="software-title">Lab Data Manager</h3>
             <div class="software-meta">
                 <span>Co-authored with <a href="https://claude.ai" target="_blank">Claude</a> (Anthropic)</span>

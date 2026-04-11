@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SciENcv HTML Formatter</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-secondary: #f5f5f3;
+    --bg-tertiary: #eeede9;
+    --bg-warning: #fffbeb;
+    --text: #1a1a1a;
+    --text-secondary: #666660;
+    --text-muted: #999993;
+    --border: rgba(0,0,0,0.12);
+    --border-med: rgba(0,0,0,0.2);
+    --border-strong: rgba(0,0,0,0.3);
+    --accent: #1B4F8A;
+    --accent-light: #e6f1fb;
+    --warn: #b45309;
+    --warn-bg: #fffbeb;
+    --warn-border: #fcd34d;
+    --danger: #b91c1c;
+    --danger-bg: #fef2f2;
+    --danger-border: #fca5a5;
+    --success: #166534;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --mono: 'Courier New', monospace;
+    --sans: system-ui, -apple-system, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1e1e1c;
+      --bg-secondary: #2a2a28;
+      --bg-tertiary: #333331;
+      --text: #e8e8e4;
+      --text-secondary: #a0a09a;
+      --text-muted: #6e6e68;
+      --border: rgba(255,255,255,0.1);
+      --border-med: rgba(255,255,255,0.18);
+      --border-strong: rgba(255,255,255,0.25);
+      --accent: #5b9bd5;
+      --accent-light: #1a2d42;
+      --warn: #fbbf24;
+      --warn-bg: #2a2310;
+      --warn-border: #78530a;
+      --danger: #f87171;
+      --danger-bg: #2a1010;
+      --danger-border: #7f1d1d;
+      --success: #4ade80;
+    }
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg-tertiary);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  header {
+    margin-bottom: 2rem;
+  }
+
+  header h1 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  header p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .card {
+    background: var(--bg);
+    border: 0.5px solid var(--border-med);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .toolbar {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .toolbar button {
+    background: var(--bg-secondary);
+    border: 0.5px solid var(--border-med);
+    border-radius: var(--radius);
+    padding: 5px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text);
+    font-family: var(--sans);
+    transition: background 0.1s;
+    line-height: 1.4;
+  }
+
+  .toolbar button:hover { background: var(--bg-tertiary); }
+  .toolbar .sep { width: 0.5px; background: var(--border); height: 22px; margin: 0 2px; }
+  .toolbar .clear-btn { color: var(--text-secondary); font-size: 12px; margin-left: auto; }
+
+  #editor {
+    width: 100%;
+    min-height: 200px;
+    border: 0.5px solid var(--border-med);
+    border-radius: var(--radius);
+    padding: 12px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    resize: vertical;
+    overflow: auto;
+  }
+
+  #editor:focus { border-color: var(--border-strong); }
+
+  #editor:empty:before {
+    content: attr(data-placeholder);
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 7px;
+    margin-bottom: 4px;
+  }
+
+  .char-counter { font-size: 12px; color: var(--text-secondary); }
+  .char-counter.warn { color: var(--warn); }
+  .char-counter.over { color: var(--danger); }
+
+  .limit-select {
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 3px 8px;
+    cursor: pointer;
+    font-family: var(--sans);
+  }
+
+  .alert {
+    font-size: 12px;
+    border-radius: var(--radius);
+    padding: 7px 11px;
+    margin-top: 8px;
+    display: none;
+    line-height: 1.5;
+  }
+
+  .alert.warn {
+    color: var(--warn);
+    background: var(--warn-bg);
+    border: 0.5px solid var(--warn-border);
+  }
+
+  .alert.danger {
+    color: var(--danger);
+    background: var(--danger-bg);
+    border: 0.5px solid var(--danger-border);
+  }
+
+  .convert-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--radius);
+    border: 0.5px solid var(--border-med);
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: opacity 0.1s;
+    margin: 1rem 0 0;
+    letter-spacing: 0.01em;
+  }
+
+  .convert-btn:hover { opacity: 0.85; }
+
+  .output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .output-box {
+    width: 100%;
+    min-height: 80px;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    font-size: 13px;
+    font-family: var(--mono);
+    color: var(--text);
+    background: var(--bg-secondary);
+    word-break: break-all;
+    white-space: pre-wrap;
+    line-height: 1.6;
+    user-select: all;
+  }
+
+  .copy-btn {
+    font-size: 12px;
+    padding: 4px 14px;
+    border-radius: var(--radius);
+    border: 0.5px solid var(--border-med);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: color 0.15s;
+  }
+
+  .copy-btn:hover { color: var(--text); }
+  .copy-btn.copied { color: var(--success); border-color: var(--success); }
+
+  .tips {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 0.5px solid var(--border);
+  }
+
+  .tips strong { color: var(--text); font-weight: 500; }
+  .tips ul { padding-left: 1.2rem; margin-top: 0.4rem; }
+  .tips li { margin-bottom: 4px; }
+
+  footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2rem;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>SciENcv HTML Formatter</h1>
+    <p>Write or paste your Personal Statement or Contribution to Science, apply formatting, then copy the HTML to paste directly into SciENcv.</p>
+  </header>
+
+  <div class="card">
+    <div class="card-label">Editor</div>
+
+    <div class="toolbar">
+      <button onclick="fmt('bold')" title="Bold (Ctrl+B)"><b>B</b></button>
+      <button onclick="fmt('italic')" title="Italic (Ctrl+I)"><i>I</i></button>
+      <button onclick="fmt('underline')" title="Underline (Ctrl+U)" style="text-decoration:underline">U</button>
+      <div class="sep"></div>
+      <button onclick="insertParagraphBreak()" title="Insert blank line between paragraphs">¶ paragraph break</button>
+      <button onclick="insertLineBreak()" title="Insert single line break (Shift+Enter)">↵ line break</button>
+      <div class="sep"></div>
+      <button class="clear-btn" onclick="clearEditor()">clear</button>
+    </div>
+
+    <div id="editor" contenteditable="true" spellcheck="true"
+      onInput="updateCounter()" onKeyDown="handleKey(event)"
+      data-placeholder="Paste or type your text here..."></div>
+
+    <div class="meta-row">
+      <span class="char-counter" id="counter">0 characters</span>
+      <select class="limit-select" id="limit-select" onchange="updateCounter()">
+        <option value="3500">Personal Statement (3,500 limit)</option>
+        <option value="2000">Contribution to Science (2,000 limit)</option>
+      </select>
+    </div>
+
+    <div class="alert" id="alert-box"></div>
+
+    <button class="convert-btn" onclick="convert()">Generate SciENcv HTML →</button>
+  </div>
+
+  <div class="card">
+    <div class="output-header">
+      <div class="card-label" style="margin-bottom:0">HTML output — paste into SciENcv</div>
+      <button class="copy-btn" id="copy-btn" onclick="copyOutput()">Copy</button>
+    </div>
+    <div class="output-box" id="output">Your formatted HTML will appear here after clicking the button above.</div>
+  </div>
+
+  <div class="tips">
+    <strong>Keyboard shortcuts:</strong> Ctrl/Cmd+B bold · Ctrl/Cmd+I italic · Ctrl/Cmd+U underline · Enter = paragraph break · Shift+Enter = line break
+    <br><br>
+    <strong>SciENcv notes:</strong>
+    <ul>
+      <li>HTML tags count toward the character limit — the counter above includes them.</li>
+      <li><code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, and <code>&lt;br&gt;</code> are the confirmed-working tags. Underline (<code>&lt;u&gt;</code>) may not render in all SciENcv PDF exports.</li>
+      <li>Citations are not allowed in Personal Statement or Contributions to Science — refer to journals by name only.</li>
+      <li>After pasting HTML into SciENcv, use the Preview button to confirm formatting before certifying.</li>
+    </ul>
+  </div>
+
+  <footer>For NIH SciENcv Common Form / NIH Biographical Sketch Supplement &nbsp;·&nbsp; Works offline</footer>
+
+</div>
+
+<script>
+  const editor = document.getElementById('editor');
+  const output = document.getElementById('output');
+  const counter = document.getElementById('counter');
+  const alertBox = document.getElementById('alert-box');
+
+  function fmt(cmd) {
+    editor.focus();
+    document.execCommand(cmd, false, null);
+    updateCounter();
+  }
+
+  function insertParagraphBreak() {
+    editor.focus();
+    const sel = window.getSelection();
+    if (!sel.rangeCount) return;
+    const range = sel.getRangeAt(0);
+    range.deleteContents();
+    const br1 = document.createElement('br');
+    const br2 = document.createElement('br');
+    const spacer = document.createTextNode('\u200B');
+    range.insertNode(spacer);
+    range.insertNode(br2);
+    range.insertNode(br1);
+    range.setStartAfter(spacer);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+    updateCounter();
+  }
+
+  function insertLineBreak() {
+    editor.focus();
+    document.execCommand('insertLineBreak');
+    updateCounter();
+  }
+
+  function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      insertParagraphBreak();
+    } else if (e.key === 'Enter' && e.shiftKey) {
+      e.preventDefault();
+      insertLineBreak();
+    }
+  }
+
+  function clearEditor() {
+    editor.innerHTML = '';
+    output.textContent = 'Your formatted HTML will appear here after clicking the button above.';
+    alertBox.style.display = 'none';
+    alertBox.className = 'alert';
+    updateCounter();
+  }
+
+  function nodeToHTML(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      return node.textContent
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE) return '';
+    const tag = node.tagName.toLowerCase();
+    if (tag === 'br') return '<br>';
+    if (tag === 'b' || tag === 'strong') return '<b>' + childHTML(node) + '</b>';
+    if (tag === 'i' || tag === 'em') return '<i>' + childHTML(node) + '</i>';
+    if (tag === 'u') return '<u>' + childHTML(node) + '</u>';
+    if (tag === 'div' || tag === 'p') return childHTML(node) + '<br><br>';
+    if (tag === 'span') {
+      let inner = childHTML(node);
+      const style = node.getAttribute('style') || '';
+      if (/font-weight\s*:\s*(bold|700)/.test(style)) inner = '<b>' + inner + '</b>';
+      if (/font-style\s*:\s*italic/.test(style)) inner = '<i>' + inner + '</i>';
+      if (/text-decoration[^;]*underline/.test(style)) inner = '<u>' + inner + '</u>';
+      return inner;
+    }
+    return childHTML(node);
+  }
+
+  function childHTML(node) {
+    return Array.from(node.childNodes).map(nodeToHTML).join('');
+  }
+
+  function getHTML() {
+    let html = Array.from(editor.childNodes).map(nodeToHTML).join('');
+    html = html.replace(/(\s*<br>\s*){3,}/g, '<br><br>');
+    html = html.replace(/(<br><br>)+$/, '');
+    html = html.replace(/\u200B/g, '');
+    return html.trim();
+  }
+
+  function convert() {
+    const html = getHTML();
+    if (!html) {
+      output.textContent = 'Nothing to convert — add some text first.';
+      return;
+    }
+    output.textContent = html;
+    const limit = parseInt(document.getElementById('limit-select').value);
+    showAlert(html.length, limit);
+  }
+
+  function updateCounter() {
+    const html = getHTML();
+    const len = html.length;
+    const limit = parseInt(document.getElementById('limit-select').value);
+    const pct = len / limit;
+    counter.textContent = '~' + len + ' characters (with HTML tags)';
+    counter.className = 'char-counter' + (len > limit ? ' over' : pct > 0.9 ? ' warn' : '');
+    showAlert(len, limit);
+  }
+
+  function showAlert(len, limit) {
+    if (len > limit) {
+      alertBox.className = 'alert danger';
+      alertBox.style.display = 'block';
+      alertBox.textContent = 'Over limit by ' + (len - limit) + ' characters. SciENcv will reject this — shorten your text.';
+    } else if (len > limit * 0.95) {
+      alertBox.className = 'alert warn';
+      alertBox.style.display = 'block';
+      alertBox.textContent = 'Within ' + (limit - len) + ' characters of the limit. Consider leaving a small buffer.';
+    } else {
+      alertBox.style.display = 'none';
+      alertBox.className = 'alert';
+    }
+  }
+
+  function copyOutput() {
+    const text = output.textContent;
+    if (!text || text.startsWith('Your formatted')) return;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+    });
+  }
+
+  document.addEventListener('keydown', e => {
+    if (document.activeElement !== editor) return;
+    if ((e.ctrlKey || e.metaKey) && e.key === 'b') { e.preventDefault(); fmt('bold'); }
+    if ((e.ctrlKey || e.metaKey) && e.key === 'i') { e.preventDefault(); fmt('italic'); }
+    if ((e.ctrlKey || e.metaKey) && e.key === 'u') { e.preventDefault(); fmt('underline'); }
+  });
+</script>
+</body>
+</html>
